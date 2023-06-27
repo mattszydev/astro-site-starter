@@ -1,0 +1,66 @@
+---
+export interface Props {
+	title: string;
+    canonLink?: string;
+    description?: string;
+}
+
+const { title, description, canonLink = Astro.url } = Astro.props;
+---
+
+<head>
+    <meta charset="UTF-8" />
+
+    <!--
+        -----Meta Description-----
+        - Write a unique description for each page;
+        - Try to summarize content accurately;
+        - Avoid generic descriptions;
+        - Use sentence case;
+        - Create something click-worthy, not clickbait;
+        - Match search intent;
+        - Include your target keyword where it makes sense;
+        - Keep it under 160 characters
+
+        Use meta robots tags only when you want to restrict the way Google crawls a page;
+    -->
+    <meta name="description" content={description}>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+        -----Meta Robots-----
+        index: tells bots to index the page;
+        noindex: tells bots not to index the page;
+        follow: tells bots to crawl links on the page, and that you also vouch for them;
+        nofollow: tells bots not to crawl links on the page, and that no endorsement is implied.
+
+        Format: <meta name=”robots” content="noindex || index, nofollow || follow">
+     -->
+
+    <meta name=”robots” content="index, follow">
+
+    <!--
+        -----Link Canonical-----
+        Tells Google which page is the 'original. Only index that page. href should be the url of 
+        the page that its found on'
+     -->
+    <link rel=“canonical” href={canonLink} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <!--
+        -----Title-----
+        - Write a unique title tag for each page;
+        - Be brief, but descriptive;
+        - Avoid generic and vague titles;
+        - Use sentence case or title case;
+        - Create something click-worthy—not clickbait;
+        - Match search intent;
+        - Include your target keyword where it makes sense;
+        - Keep it under 60 characters.
+    -->
+    <title>{title}</title>
+</head>
