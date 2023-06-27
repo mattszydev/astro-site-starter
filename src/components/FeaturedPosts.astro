@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a,b) => (b.data.pubDate.getTime() - a.data.pubDate.getTime()));
+const featuredPosts = sortedPosts.slice(0,3)
+
+---
+
+<h2>Featured Posts</h2>
+<ul>
+    {
+        featuredPosts.map((post) => (
+           <li><p>{post.data.title}</p> <small><FormattedDate date={post.data.pubDate} /></small>
+           <a href={`${post.collection}/${post.slug}`}>Read Now</a>
+            
+            </li>
+        ))
+    }
+</ul>

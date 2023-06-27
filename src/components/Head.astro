@@ -1,11 +1,13 @@
 ---
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
 export interface Props {
-	title: string;
+	title?: string;
     canonLink?: string;
     description?: string;
 }
 
-const { title, description, canonLink = Astro.url } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, canonLink = Astro.url } = Astro.props;
 ---
 
 <head>

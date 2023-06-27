@@ -1,16 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import FeaturedPosts from '../components/FeaturedPosts.astro';
 
 ---
 
 <Layout title="Welcome to Astro." description='this is the Index page description'>
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-	</main>
+	
+	<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+	<p class="instructions">
+		To get started, open the directory <code>src/pages</code> in your project.<br />
+		<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+	</p>
+	<FeaturedPosts />
 </Layout>
 
 

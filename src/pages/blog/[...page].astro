@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import { getCollection } from 'astro:content';
-
+import FormattedDate from '../../components/FormattedDate.astro';
 
 export async function getStaticPaths({ paginate }){
 	const posts = await getCollection('blog');
@@ -10,14 +10,10 @@ export async function getStaticPaths({ paginate }){
 }
 
 const { page } = Astro.props;
-
 const prevURL = page.url.prev;
 const nextURL = page.url.next;
 const currentURL =  page.url.current;
-
 ---
-
-
 
 <Layout title="Blog Page" description='this is the Blog page description'>
     <section>
@@ -25,7 +21,7 @@ const currentURL =  page.url.current;
             page.data.map((post)=> (
 
             <p><strong>{post.data.title}</p></strong>
-            <p>{post.data.pubDate}</p>
+            <FormattedDate date={post.data.pubDate}/>
             <br>
             
             <a href={currentURL ==='/blog' ? `blog/${post.slug}` : post.slug}>Read Now</a>
@@ -34,7 +30,6 @@ const currentURL =  page.url.current;
     </section>
     {prevURL ? <a href={prevURL}>Previous</a> : null}
     {nextURL ? <a href={nextURL}>Next</a> : null}
-    
 </Layout>
 
 
